@@ -1,0 +1,86 @@
+//write a java program to display details of required employee *create an array on n opbjects and read values for each object intitally and then display the required details base on id
+import java.util.Scanner;
+
+class Employee {
+    private int id;
+    private String name;
+    private String designation;
+    private double salary;
+
+    public Employee(int id, String name, String designation, double salary) {
+        this.id = id;
+        this.name = name;
+        this.designation = designation;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+}
+
+ class EmployeeDetails {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of employees: ");
+        int n = scanner.nextInt();
+
+        Employee[] employees = new Employee[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for employee " + (i + 1) + ":");
+            System.out.print("ID: ");
+            int id = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Designation: ");
+            String designation = scanner.nextLine();
+
+            System.out.print("Salary: ");
+            double salary = scanner.nextDouble();
+            scanner.nextLine(); // Consume the newline character
+
+            employees[i] = new Employee(id, name, designation, salary);
+        }
+
+        System.out.print("Enter the ID of the employee to display details: ");
+        int searchId = scanner.nextInt();
+
+        boolean found = false;
+        for (Employee employee : employees) {
+            if (employee.getId() == searchId) {
+                System.out.println("Employee Details:");
+                System.out.println("ID: " + employee.getId());
+                System.out.println("Name: " + employee.getName());
+                System.out.println("Designation: " + employee.getDesignation());
+                System.out.println("Salary: " + employee.getSalary());
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Employee with ID " + searchId + " not found.");
+        }
+
+        scanner.close();
+    }
+}
+
+
