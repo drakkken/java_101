@@ -1,0 +1,33 @@
+public class GarbageCollectionDemo {
+    public static void main(String[] args) {
+        // Create an object
+        MyClass obj1 = new MyClass(1);
+        
+        // Set obj1 to null, making it eligible for garbage collection
+        obj1 = null;
+
+        // Request garbage collection
+        System.gc();
+        
+        // Create another object
+        MyClass obj2 = new MyClass(2);
+
+        // obj1 has been garbage collected, so it won't affect memory
+        // obj2 is still in use
+    }
+}
+
+class MyClass {
+    int id;
+
+    public MyClass(int id) {
+        this.id = id;
+        System.out.println("Object " + id + " created");
+    }
+
+    // Override the finalize method to display a message when an object is garbage collected
+    @Override
+    protected void finalize() {
+        System.out.println("Object " + id + " is being garbage collected");
+    }
+}
